@@ -3,7 +3,7 @@
  * @Author: ydfk
  * @Date: 2021-08-24 17:24:45
  * @LastEditors: ydfk
- * @LastEditTime: 2021-09-16 21:00:52
+ * @LastEditTime: 2021-10-28 15:48:22
  */
 import { ConfigEnv, defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -12,6 +12,7 @@ import { viteMockServe } from "vite-plugin-mock";
 import WindiCSS from "vite-plugin-windicss";
 import pkg from "./package.json";
 import dayjs from "dayjs";
+import ViteComponents, { AntDesignVueResolver } from "vite-plugin-components";
 
 const { dependencies, devDependencies, name, version } = pkg;
 const __APP_INFO__ = {
@@ -41,7 +42,14 @@ export default ({ mode, command }: ConfigEnv) => {
     });
 
   return defineConfig({
-    plugins: [vue({ refTransform: true }), WindiCSS(), mockPlugin],
+    plugins: [
+      vue({ refTransform: true }),
+      ViteComponents({
+        customComponentResolvers: [AntDesignVueResolver()],
+      }),
+      WindiCSS(),
+      mockPlugin,
+    ],
     resolve: {
       alias: [
         {

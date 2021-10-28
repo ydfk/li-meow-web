@@ -1,10 +1,10 @@
 {
-  "name": "vue3-starter",
+  "name": "li-meow-web",
   "version": "1.0.0",
   "author": {
     "name": "ydfk",
     "email": "lyh6728326@gmail.com",
-    "url": "https://github.com/ydfk/vue3-starter"
+    "url": "https://github.com/ydfk/li-meow-web"
   },
   "scripts": {
     "dev:pre": "node ./node_modules/esbuild/install.js",
@@ -25,6 +25,7 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
+    "ant-design-vue": "^2.2.8",
     "axios": "^0.24.0",
     "dayjs": "^1.10.7",
     "lodash-es": "^4.17.21",
@@ -63,6 +64,7 @@
     "postinstall-postinstall": "^2.1.0",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
+    "sass": "^1.43.4",
     "scss": "^0.2.4",
     "standard-version": "^9.3.2",
     "stylelint": "^13.13.1",
@@ -72,6 +74,7 @@
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4",
     "vite": "^2.6.12",
+    "vite-plugin-components": "^0.13.3",
     "vite-plugin-mock": "^2.9.6",
     "vite-plugin-windicss": "^1.4.12",
     "vue-eslint-parser": "^8.0.0",

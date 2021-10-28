@@ -35,7 +35,7 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: vue3-starter-${{ env.date }}
+          name: li-meow-web-${{ env.date }}
           path: dist
 
       - name: Package Version Updated
@@ -50,7 +50,7 @@ jobs:
         if: steps.version-updated.outputs.has-updated || github.event.inputs.release
         run: |
           cd dist
-          tar -zcvf vue3-starter-${{ steps.version-updated.outputs.current-package-version }}.tar.gz *
+          tar -zcvf li-meow-web-${{ steps.version-updated.outputs.current-package-version }}.tar.gz *
 
       - name: Release
         uses: ncipollo/release-action@v1
@@ -59,4 +59,4 @@ jobs:
           name: ${{ steps.version-updated.outputs.current-package-version }}
           tag: ${{ env.date }}
           token: ${{ secrets.REPO_TOKEN }}
-          artifacts: "dist/vue3-starter-${{ steps.version-updated.outputs.current-package-version }}.tar.gz"
+          artifacts: "dist/li-meow-web-${{ steps.version-updated.outputs.current-package-version }}.tar.gz"

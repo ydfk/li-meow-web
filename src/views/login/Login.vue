@@ -3,32 +3,15 @@
  * @Author: ydfk
  * @Date: 2021-08-26 09:16:24
  * @LastEditors: ydfk
- * @LastEditTime: 2021-10-27 14:40:17
+ * @LastEditTime: 2021-10-28 17:35:15
 -->
 <template>
-  <div class="login">
-    <div class="flex justify-center">这是登录</div>
-    <p>{{ user }}</p>
-    <router-link :to="{ name: 'dashboard' }"> 主页 </router-link>
+  <div class="flex h-screen">
+    <div class="m-auto bg-white rounded-xl shadow-md w-1/3 h-3/5 flex justify-center">
+      <h3>title</h3>
+      <button>button</button>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-  import { loginApi } from "@/apis/login";
-
-  import { defineComponent, onMounted, ref } from "vue";
-
-  export default defineComponent({
-    setup() {
-      const user = ref({});
-
-      onMounted(async () => {
-        user.value = await loginApi("u", "p");
-      });
-
-      return {
-        user: user,
-      };
-    },
-  });
-</script>
+<script lang="ts" setup></script>
