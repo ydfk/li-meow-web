@@ -1,0 +1,13 @@
+diff --git a/node_modules/commitlint-plugin-gitmoji/lib/gitmojiCode.js b/node_modules/commitlint-plugin-gitmoji/lib/gitmojiCode.js
+index 93037c6..0022af7 100644
+--- a/node_modules/commitlint-plugin-gitmoji/lib/gitmojiCode.js
++++ b/node_modules/commitlint-plugin-gitmoji/lib/gitmojiCode.js
+@@ -29,7 +29,7 @@ var filePath = gitmojiPath ? path_1.join(process.cwd(), gitmojiPath) : // or use
+ path_1.join(__dirname, 'gitmojis.json'); // Download gitmojis.json if it doesn't exist yet
+ 
+ if (!fs_1.existsSync(filePath)) {
+-  var url = process.env.GITMOJI_URL || 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json';
++  var url = process.env.GITMOJI_URL || 'https://mirror.ghproxy.com/https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json';
+ 
+   try {
+     // eslint-disable-next-line global-require

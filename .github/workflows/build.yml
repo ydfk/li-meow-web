@@ -1,0 +1,62 @@
+name: build
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "是否发布"
+        required: false
+        default: false
+jobs:
+  build:
+    name: build-${{matrix.os}}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@master
+
+      - name: Prepare
+        run: |
+          echo "date=$(date "+%Y%m%d%H%M%S")" >> $GITHUB_ENV
+
+      - name: Install
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: vue3-starter-${{ env.date }}
+          path: dist
+
+      - name: Package Version Updated
+        uses: MontyD/package-json-updated-action@1.0.1
+        id: version-updated
+        with:
+          path: package.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tar
+        if: steps.version-updated.outputs.has-updated || github.event.inputs.release
+        run: |
+          cd dist
+          tar -zcvf vue3-starter-${{ steps.version-updated.outputs.current-package-version }}.tar.gz *
+
+      - name: Release
+        uses: ncipollo/release-action@v1
+        if: steps.version-updated.outputs.has-updated || github.event.inputs.release
+        with:
+          name: ${{ steps.version-updated.outputs.current-package-version }}
+          tag: ${{ env.date }}
+          token: ${{ secrets.REPO_TOKEN }}
+          artifacts: "dist/vue3-starter-${{ steps.version-updated.outputs.current-package-version }}.tar.gz"
