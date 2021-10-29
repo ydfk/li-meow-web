@@ -3,13 +3,11 @@
  * @Author: ydfk
  * @Date: 2021-08-24 17:24:45
  * @LastEditors: ydfk
- * @LastEditTime: 2021-10-28 17:21:34
+ * @LastEditTime: 2021-10-29 15:47:22
 -->
 <template>
   <router-view />
 </template>
-
-<script lang="ts" setup></script>
 
 <style lang="scss">
   html {
